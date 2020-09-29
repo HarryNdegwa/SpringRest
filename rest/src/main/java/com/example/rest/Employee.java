@@ -21,6 +21,11 @@ class Employee {
         this.role = role;
     }
 
+    @Override
+    public String toString(){
+        return String.format("Employee[id=%d,name=%s,role=%s]",id,name,role);
+    }
+
     public Long getId(){
         return id;
     }

@@ -1,9 +1,9 @@
 package com.example.rest;
 
 import java.util.List;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
-import org.springframework.hateoas.Resource;
-import org.springframework.hateoas.Resources;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.hateoas.EntityModel;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +34,11 @@ class EmployeeController {
     
 
     @GetMapping("/employees/{id}")
-    Employee one(@PathVariable Long id){
-        return repository.findById(id).orElseThrow(()->new EmployeeNotFoundException(id));
+    EntityModel<Employee> one(@PathVariable Long id){
+        Employee employee = repository.findById(id).orElseThrow(()->new EmployeeNotFoundException(id));
+        return EntityModel.of(employee,
+        linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
+        linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
     }
 
     @PutMapping("/employees/{id}")

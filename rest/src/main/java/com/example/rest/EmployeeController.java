@@ -24,7 +24,7 @@ class EmployeeController {
         return repository.findAll();
     }
 
-    @PostMapping("/employess")
+    @PostMapping("/employees")
     Employee newEmployee(@RequestBody Employee newEmployee){
         return repository.save(newEmployee);
     }

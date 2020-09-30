@@ -1,5 +1,7 @@
 package com.example.rest;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EmployeeController {
+class EmployeeController {
 
     private final EmployeeRepository repository;
 
-    public EmployeeController(EmployeeRepository repository){ //injecting an EmployeeRepository into the controller
+    EmployeeController(EmployeeRepository repository){ //injecting an EmployeeRepository into the controller
         this.repository = repository;
     }
 
@@ -40,7 +42,7 @@ public class EmployeeController {
             employee.setRole(newEmployee.getRole());
             return repository.save(employee);
         })
-        .orElseGet(()->{
+        .orElseGet(() -> {
             newEmployee.setId(id);
             return repository.save(newEmployee);
         });

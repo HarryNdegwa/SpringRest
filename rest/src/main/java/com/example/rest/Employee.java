@@ -20,4 +20,24 @@ class Employee {
         this.name = name;
         this.role = role;
     }
+
+    // public void setId(Long id){
+    //     id=id;
+    // }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getRole(){
+        return role;
+    }
+
+    public void setName(String newName){
+        name = newName;
+    }
+
+    public void setRole(String newRole){{
+        role = newRole;
+    }}
 }
